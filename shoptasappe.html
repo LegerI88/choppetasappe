@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop ta Sapp' – Scénario 2de MRC – Lycée Isabelle Viviani</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+  :root {
+    --brand: #E63946;
+    --brand2: #1d1d1d;
+    --accent: #F4A261;
+    --light: #f8f8f8;
+    --warm: #fff9f4;
+    --pole1: #E63946;
+    --pole2: #2d6a4f;
+    --pole3: #7B2FBE;
+    --text: #1a1a1a;
+    --muted: #666;
+    --border: #e0e0e0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f0f0f0;
+    color: var(--text);
+    font-size: 15px;
+  }
+
+  /* ===== HEADER ===== */
+  .site-header {
+    background: var(--brand2);
+    color: white;
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  }
+  .header-top {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 14px 28px;
+    border-bottom: 3px solid var(--brand);
+  }
+  .logo-badge {
+    background: var(--brand);
+    color: white;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    padding: 6px 18px;
+    border-radius: 4px;
+    line-height: 1;
+  }
+  .header-info { flex: 1; }
+  .header-info h1 { font-size: 1.1rem; font-weight: 700; color: white; letter-spacing: 0.5px; }
+  .header-info p { font-size: 0.8rem; color: #aaa; margin-top: 2px; }
+  .header-meta {
+    text-align: right;
+    font-size: 0.78rem;
+    color: #999;
+    line-height: 1.6;
+  }
+  .header-actions {
+    display: flex;
+    gap: 10px;
+    padding: 10px 28px;
+    background: #111;
+  }
+  .btn-action {
+    padding: 7px 16px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.2s;
+  }
+  .btn-print { background: #444; color: white; }
+  .btn-pdf { background: var(--brand); color: white; }
+  .btn-action:hover { opacity: 0.85; transform: translateY(-1px); }
+
+  /* ===== NAV ===== */
+  .nav-bar {
+    background: #1a1a1a;
+    display: flex;
+    gap: 4px;
+    padding: 0 28px;
+    overflow-x: auto;
+  }
+  .nav-btn {
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: #aaa;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 11px 16px;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .nav-btn:hover { color: white; }
+  .nav-btn.active { color: white; }
+  .nav-btn.p1.active { border-bottom-color: var(--pole1); }
+  .nav-btn.p2.active { border-bottom-color: var(--pole2); }
+  .nav-btn.p3.active { border-bottom-color: var(--pole3); }
+  .nav-btn.info.active { border-bottom-color: var(--accent); }
+
+  /* ===== MAIN ===== */
+  .main { max-width: 1100px; margin: 0 auto; padding: 28px 18px; }
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* ===== PAGE ACCUEIL ===== */
+  .store-hero {
+    background: var(--brand2);
+    border-radius: 12px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 28px;
+    min-height: 200px;
+  }
+  .hero-text {
+    padding: 32px 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .hero-text .store-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    color: var(--brand);
+    line-height: 1;
+    letter-spacing: 2px;
+  }
+  .hero-text .store-sub {
+    color: #ccc;
+    font-size: 0.95rem;
+    margin-top: 8px;
+    line-height: 1.6;
+  }
+  .hero-visual {
+    background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .brand-tag {
+    background: white;
+    color: #111;
+    font-weight: 800;
+    font-size: 0.85rem;
+    padding: 6px 14px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .brand-tag.red { background: var(--brand); color: white; }
+  .brand-tag.gold { background: var(--accent); color: #111; }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .info-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    border-left: 4px solid var(--brand);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .info-card h3 { font-size: 0.8rem; text-transform: uppercase; color: var(--muted); letter-spacing: 1px; margin-bottom: 10px; }
+  .info-card p, .info-card li { font-size: 0.88rem; color: var(--text); line-height: 1.7; }
+  .info-card ul { padding-left: 16px; }
+  .info-card.green { border-left-color: var(--pole2); }
+  .info-card.purple { border-left-color: var(--pole3); }
+  .info-card.gold { border-left-color: var(--accent); }
+
+  .poles-overview {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .pole-card {
+    border-radius: 10px;
+    padding: 22px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .pole-card.p1 { background: var(--pole1); }
+  .pole-card.p2 { background: var(--pole2); }
+  .pole-card.p3 { background: var(--pole3); }
+  .pole-card .pole-num { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; opacity: 0.2; position: absolute; top: 8px; right: 16px; line-height: 1; }
+  .pole-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 10px; }
+  .pole-card ul { padding-left: 16px; font-size: 0.82rem; opacity: 0.9; line-height: 1.8; }
+
+  .disclaimer {
+    background: #fff8e1;
+    border: 1px solid #ffe082;
+    border-left: 4px solid #f59e0b;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 0.8rem;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  /* ===== PÔLE HEADER ===== */
+  .pole-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 24px 28px;
+    border-radius: 10px;
+    margin-bottom: 24px;
+    background: white;
+    border-left: 6px solid currentColor;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+  }
+  .pole-header.p1 { border-left-color: var(--pole1); }
+  .pole-header.p2 { border-left-color: var(--pole2); }
+  .pole-header.p3 { border-left-color: var(--pole3); }
+  .pole-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    line-height: 1;
+    opacity: 0.15;
+  }
+  .p1 .pole-number { color: var(--pole1); }
+  .p2 .pole-number { color: var(--pole2); }
+  .p3 .pole-number { color: var(--pole3); }
+  .pole-header h2 { font-size: 1.25rem; font-weight: 700; color: var(--text); }
+  .pole-header p { font-size: 0.85rem; color: var(--muted); margin-top: 4px; line-height: 1.5; }
+
+  /* ===== MISSION ===== */
+  .mission {
+    background: white;
+    border-radius: 10px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    overflow: hidden;
+  }
+  .mission-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 22px;
+    cursor: pointer;
+    color: white;
+    user-select: none;
+    transition: opacity 0.2s;
+  }
+  .mission-header:hover { opacity: 0.92; }
+  .p1 .mission-header { background: var(--pole1); }
+  .p2 .mission-header { background: var(--pole2); }
+  .p3 .mission-header { background: var(--pole3); }
+  .mission-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    opacity: 0.7;
+    min-width: 36px;
+  }
+  .mission-header h3 { font-size: 1rem; font-weight: 600; flex: 1; }
+  .mission-header .sub { font-size: 0.78rem; opacity: 0.85; margin-top: 2px; }
+  .mission-tag {
+    background: rgba(255,255,255,0.2);
+    border-radius: 12px;
+    padding: 3px 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .toggle-icon { font-size: 0.9rem; transition: transform 0.3s; opacity: 0.7; }
+  .mission.open .toggle-icon { transform: rotate(180deg); }
+
+  .mission-body {
+    display: none;
+    padding: 24px;
+    border-top: 1px solid var(--border);
+    flex-direction: column;
+    gap: 20px;
+  }
+  .mission.open .mission-body { display: flex; }
+
+  /* ===== BLOCS ===== */
+  .mission-block { display: flex; flex-direction: column; gap: 10px; }
+  .block-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    display: inline-block;
+  }
+  .block-title.contexte { background: #fff3cd; color: #856404; }
+  .block-title.taches { background: #dbeafe; color: #1e40af; }
+  .block-title.ressources { background: #dcfce7; color: #166534; }
+  .block-title.annexe { background: #f3e8ff; color: #6b21a8; }
+  .block-title.auto { background: #fee2e2; color: #991b1b; }
+
+  .context-box {
+    background: var(--warm);
+    border: 1px solid #ffe8c0;
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-size: 0.88rem;
+    line-height: 1.7;
+  }
+  .bubble {
+    background: white;
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 10px 16px;
+    margin: 10px 0;
+    font-style: italic;
+    color: #444;
+    font-size: 0.88rem;
+  }
+
+  .taches-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 0;
+  }
+  .taches-list li {
+    background: #f0f7ff;
+    border-left: 3px solid #3b82f6;
+    border-radius: 0 6px 6px 0;
+    padding: 10px 14px;
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .ressource-item {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 0.87rem;
+  }
+  .res-title {
+    font-weight: 700;
+    color: #166534;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+  }
+  .ressource-item ul { padding-left: 18px; line-height: 1.8; color: #1a1a1a; }
+  .ressource-item li { margin-bottom: 3px; }
+
+  /* ===== ANNEXES ===== */
+  .annexe-box {
+    background: #faf5ff;
+    border: 1px solid #ddd6fe;
+    border-radius: 8px;
+    padding: 18px;
+  }
+  .ann-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #6b21a8;
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #ddd6fe;
+  }
+
+  table.annexe-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.86rem;
+    margin-top: 8px;
+  }
+  .annexe-table th {
+    background: #1d1d1d;
+    color: white;
+    padding: 9px 12px;
+    text-align: left;
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+  .annexe-table td {
+    padding: 9px 12px;
+    border: 1px solid #e0d4fa;
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .annexe-table tr:nth-child(even) td { background: #f5f0ff; }
+
+  td.ligne-vide { background: #fffef5; }
+
+  /* CHAMPS ÉDITABLES ANNEXES */
+  .editable {
+    min-height: 38px;
+    background: #fffef5 !important;
+    border: 1.5px dashed #f59e0b !important;
+    border-radius: 4px;
+    padding: 6px 10px !important;
+    cursor: text;
+    outline: none;
+    transition: all 0.2s;
+  }
+  .editable:focus {
+    background: #fffbea !important;
+    border-color: #d97706 !important;
+    box-shadow: 0 0 0 3px rgba(245,158,11,0.12);
+  }
+  .editable:empty::before {
+    content: attr(data-placeholder);
+    color: #bbb;
+    font-style: italic;
+    font-size: 0.82rem;
+    pointer-events: none;
+  }
+
+  /* CHAMPS RÉPONSE TÂCHES */
+  .tache-response {
+    margin: 6px 0 10px 0;
+    min-height: 60px;
+    background: #f0f9ff !important;
+    border: 1.5px dashed #38bdf8 !important;
+    border-radius: 6px;
+    padding: 8px 12px !important;
+    font-size: 0.88rem;
+    color: #1e3a5f;
+  }
+  .tache-response:focus {
+    background: #e0f2fe !important;
+    border-color: #0284c7 !important;
+    box-shadow: 0 0 0 3px rgba(56,189,248,0.15);
+  }
+  .tache-response:empty::before {
+    content: attr(data-placeholder);
+    color: #7ab8d4;
+    font-style: italic;
+    font-size: 0.82rem;
+    pointer-events: none;
+  }
+
+  /* ===== AUTOÉVAL ===== */
+  table.autoeval-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.86rem;
+  }
+  .autoeval-table th {
+    background: #1d1d1d;
+    color: white;
+    padding: 9px 12px;
+    text-align: center;
+    font-size: 0.8rem;
+  }
+  .autoeval-table th:first-child { text-align: left; }
+  .autoeval-table td {
+    padding: 9px 12px;
+    border: 1px solid #eee;
+    vertical-align: middle;
+  }
+  .autoeval-table tr:nth-child(even) td { background: #fafafa; }
+  .check-col { width: 80px; text-align: center; }
+  .check-cell { display: flex; justify-content: center; }
+  .check-btn {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    background: white;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 700;
+    transition: all 0.2s;
+  }
+  .check-btn.oui { background: #22c55e; border-color: #16a34a; color: white; }
+  .check-btn.part { background: #f97316; border-color: #ea580c; color: white; }
+  .check-btn.non { background: #ef4444; border-color: #dc2626; color: white; }
+  .eval-legend { display: flex; gap: 16px; margin-top: 10px; font-size: 0.8rem; color: var(--muted); justify-content: flex-end; }
+  .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 4px; }
+  .dot.oui { background: #22c55e; }
+  .dot.part { background: #f97316; }
+  .dot.non { background: #ef4444; }
+
+  /* SAVE MESSAGE */
+  .save-msg {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 6px;
+    padding: 10px 16px;
+    font-size: 0.82rem;
+    color: #92400e;
+    margin-top: 8px;
+    display: none;
+  }
+
+  @media print {
+    .site-header, .nav-bar { display: none !important; }
+    .section { display: block !important; }
+    .mission-body { display: flex !important; }
+    .editable, .tache-response {
+      border: 1px solid #ddd !important;
+      background: #fafafa !important;
+      box-shadow: none !important;
+      min-height: 40px;
+    }
+    .editable:empty::before, .tache-response:empty::before { display: none; }
+    .check-btn { print-color-adjust: exact; }
+  }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-top">
+    <div class="logo-badge">Shop<br>ta Sapp'</div>
+    <div class="header-info">
+      <h1>Scénario pédagogique – 2de Bac Pro MRC</h1>
+      <p>Lycée Isabelle Viviani · Épinal · Tutrice : Mme Léger</p>
+    </div>
+    <div class="header-meta">
+      Magasin pédagogique<br>
+      Lycée Isabelle Viviani, Épinal
+    </div>
+  </div>
+  <div class="header-actions">
+    <button class="btn-action btn-print" onclick="window.print()">🖨️ Imprimer</button>
+    <button class="btn-action btn-pdf" onclick="savePDF()">💾 Sauvegarder en PDF</button>
+  </div>
+  <nav class="nav-bar">
+    <button class="nav-btn info active" onclick="showSection('accueil', this)">🏪 Le magasin</button>
+    <button class="nav-btn p1" onclick="showSection('pole1', this)">Pôle 1 – Vente & Conseil</button>
+    <button class="nav-btn p2" onclick="showSection('pole2', this)">Pôle 2 – Encaissement</button>
+    <button class="nav-btn p3" onclick="showSection('pole3', this)">Pôle 3 – Réclamations & Retours</button>
+  </nav>
+</header>
+
+<div class="main">
+
+  <!-- ===== PAGE ACCUEIL ===== -->
+  <div class="section active" id="accueil">
+
+    <div class="store-hero">
+      <div class="hero-text">
+        <div class="store-name">Shop<br>ta Sapp'</div>
+        <div class="store-sub">
+          Magasin pédagogique · Lycée Isabelle Viviani · Épinal<br>
+          Ton lieu de formation en situation réelle de vente
+        </div>
+      </div>
+      <div class="hero-visual">
+        <span class="brand-tag red">Adidas</span>
+        <span class="brand-tag">Puma</span>
+        <span class="brand-tag gold">Jordan</span>
+        <span class="brand-tag">Lacoste</span>
+        <span class="brand-tag">Champion</span>
+        <span class="brand-tag red">Slazenger</span>
+        <span class="brand-tag">Nike</span>
+        <span class="brand-tag gold">SOLDES</span>
+      </div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>📍 Le magasin</h3>
+        <ul>
+          <li>Magasin pédagogique du lycée Isabelle Viviani</li>
+          <li>Spécialisé sport & mode – articles neufs et occasion</li>
+          <li>Marques : Adidas, Puma, Jordan, Lacoste, Nike, Champion…</li>
+          <li>Caisse, portants, cabine d'essayage, rayons chaussures</li>
+        </ul>
+      </div>
+      <div class="info-card green">
+        <h3>👩‍🏫 Ta tutrice</h3>
+        <ul>
+          <li><strong>Mme Léger</strong>, responsable du Shop ta Sapp'</li>
+          <li>Tu travailles sous sa supervision</li>
+          <li>Elle est disponible pour t'aider en cas de difficulté</li>
+          <li>N'hésite pas à lui poser tes questions !</li>
+        </ul>
+      </div>
+      <div class="info-card gold">
+        <h3>🏷️ Offres en cours</h3>
+        <ul>
+          <li>Soldes : réductions sur sélection de vêtements</li>
+          <li>-50% sur le 2ème jean acheté</li>
+          <li>Vestes à partir de 10€ (portant central)</li>
+          <li>Bottes enfant Mickey, Smiley…</li>
+        </ul>
+      </div>
+      <div class="info-card purple">
+        <h3>📦 Rayons du magasin</h3>
+        <ul>
+          <li>Vêtements : vestes, joggings, t-shirts, polos</li>
+          <li>Chaussures : baskets Adidas, bottes enfant</li>
+          <li>Accessoires : casquettes, sacs, raquettes vintage</li>
+          <li>Cabine d'essayage disponible</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="poles-overview">
+      <div class="pole-card p1">
+        <div class="pole-num">01</div>
+        <h3>Vente & Conseil produit</h3>
+        <ul>
+          <li>M1.1 – Découvrir le besoin client</li>
+          <li>M1.2 – Argumenter & convaincre</li>
+          <li>M1.3 – La vente additionnelle</li>
+        </ul>
+      </div>
+      <div class="pole-card p2">
+        <div class="pole-num">02</div>
+        <h3>Encaissement & Gestion caisse</h3>
+        <ul>
+          <li>M2.1 – L'encaissement simple</li>
+          <li>M2.2 – Appliquer une promotion</li>
+          <li>M2.3 – Gérer une erreur de caisse</li>
+        </ul>
+      </div>
+      <div class="pole-card p3">
+        <div class="pole-num">03</div>
+        <h3>Réclamations & Retours</h3>
+        <ul>
+          <li>M3.1 – Le retour avec ticket</li>
+          <li>M3.2 – La réclamation à chaud</li>
+          <li>M3.3 – Le client mécontent du produit</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="disclaimer">
+      ⚠️ <strong>Note :</strong> Les situations et personnages de ce scénario sont entièrement fictifs et créés à des fins pédagogiques. Le magasin "Shop ta Sapp'" est le magasin pédagogique réel du lycée Isabelle Viviani d'Épinal. Les marques citées (Adidas, Puma, Jordan, Lacoste…) sont des marques réelles présentes dans le magasin, citées à titre pédagogique uniquement.
+    </div>
+  </div>
+
+  <!-- ===== PÔLE 1 ===== -->
+  <div class="section" id="pole1">
+    <div class="pole-header p1">
+      <div class="pole-number">01</div>
+      <div>
+        <h2>Pôle 1 – Vente & Conseil produit</h2>
+        <p>Compétences travaillées : identifier le besoin du client, argumenter avec la méthode CAP, réaliser une vente additionnelle, adapter son discours au profil du client.</p>
+      </div>
+    </div>
+
+    <!-- M1.1 -->
+    <div class="mission p1">
+      <div class="mission-header" onclick="toggleMission(this)">
+        <span class="mission-num">M1</span>
+        <div>
+          <h3>Tu cherches quelque chose ? – La découverte du besoin</h3>
+          <div class="sub">Accueil client · Questionnement · Écoute active</div>
+        </div>
+        <span class="mission-tag">Vente</span>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="mission-body">
+
+        <div class="mission-block">
+          <div class="block-title contexte">🟡 Contexte</div>
+          <div class="context-box">
+            <p>C'est un mercredi après-midi au Shop ta Sapp'. Mme Léger t'accueille :</p>
+            <div class="bubble">"Aujourd'hui tu vas gérer l'accueil seul(e). Un client va entrer dans quelques minutes. Ton objectif : identifier précisément ce qu'il cherche avant de lui proposer quoi que ce soit. Utilise la ressource sur le questionnement !"</div>
+            <p style="margin-top:10px;">Un lycéen, <strong>Théo, 17 ans</strong>, entre dans le magasin. Il regarde les portants sans trop savoir par où commencer. Il a l'air un peu perdu et ne dit rien.</p>
+          </div>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title taches">🔵 Tes tâches</div>
+          <ol class="taches-list">
+            <li><strong>Tâche 1 :</strong> Accueille Théo avec une formule adaptée (ni trop formelle, ni trop familière).</li>
+            <div class="tache-response editable" contenteditable="true" data-placeholder="✏️ Ma réponse à cette tâche..."></div>
+            <li><strong>Tâche 2 :</strong> Pose-lui une question ouverte pour identifier ce qu'il recherche.</li>
+            <div class="tache-response editable" contenteditable="true" data-placeholder="✏️ Ma réponse à cette tâche..."></div>
+            <li><strong>Tâche 3 :</strong> Il te répond qu'il cherche "quelque chose pour sortir le week-end, pas trop cher". Pose 2 questions de précision (taille, style, budget...).</li>
+            <div class="tache-response editable" contenteditable="true" data-placeholder="✏️ Ma réponse à cette tâche..."></div>
+            <li><strong>Tâche 4 :</strong> Oriente-le vers un rayon ou article précis du magasin en justifiant ton choix.</li>
+            <div class="tache-response editable" contenteditable="true" data-placeholder="✏️ Ma réponse à cette tâche..."></div>
+            <li><strong>Tâche 5 :</strong> Complète l'annexe A1 : la fiche de découverte client.</li>
+          </ol>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title ressources">🟢 Ressources</div>
+          <div class="ressource-item">
+            <div class="res-title">📋 Ressource 1 – Le questionnement en vente</div>
+            <ul>
+              <li><strong>Question ouverte</strong> : permet à l'autre de s'exprimer librement → commence par Qui / Quoi / Comment / Pour / Quel… → Ex : "Qu'est-ce que tu recherches ?"</li>
+              <li><strong>Question fermée</strong> : réponse oui/non → utile pour confirmer → Ex : "Tu cherches plutôt du sport ou du casual ?"</li>
+              <li><strong>Question alternative</strong> : deux choix proposés → Ex : "Tu préfères les baskets ou les vestes ?"</li>
+              <li><strong>Écoute active</strong> : reformuler ce que le client dit pour montrer que tu as bien compris → Ex : "Si je comprends bien, tu cherches une veste pas trop chère pour sortir le week-end ?"</li>
+            </ul>
+          </div>
+          <div class="ressource-item" style="margin-top:10px;">
+            <div class="res-title">🏷️ Ressource 2 – Articles disponibles au Shop ta Sapp'</div>
+            <ul>
+              <li>Vestes : militaire kaki, bomber, perfecto cuir, parka → à partir de <strong>10€</strong></li>
+              <li>Joggings : Adidas, Champion → <strong>5 à 15€</strong></li>
+              <li>T-shirts & polos : Adidas (jaune, vert), Nike → <strong>3 à 8€</strong></li>
+              <li>Baskets : Adidas Superstar, Campus → <strong>10 à 25€</strong></li>
+              <li>Promo en cours : <strong>-50% sur le 2ème jean</strong></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title annexe">🟣 Annexe A1 – Fiche découverte client</div>
+          <div class="annexe-box">
+            <div class="ann-title">Annexe A1 – Complète après l'échange avec Théo</div>
+            <table class="annexe-table">
+              <tr><td style="width:35%"><strong>Prénom du client</strong></td><td class="editable" contenteditable="true" data-placeholder="..."></td></tr>
+              <tr><td><strong>Ce qu'il recherche</strong></td><td class="editable" contenteditable="true" data-placeholder="Décris en une phrase..."></td></tr>
+              <tr><td><strong>Sa taille</strong></td><td class="editable" contenteditable="true" data-placeholder="..."></td></tr>
+              <tr><td><strong>Son style</strong></td><td class="editable" contenteditable="true" data-placeholder="Sport / Casual / Streetwear..."></td></tr>
+              <tr><td><strong>Son budget maximum</strong></td><td class="editable" contenteditable="true" data-placeholder="...€"></td></tr>
+              <tr><td><strong>Article(s) que tu lui as proposé(s)</strong></td><td class="editable" contenteditable="true" data-placeholder="Nom + rayon + prix..."></td></tr>
+              <tr><td><strong>Question ouverte que tu as posée</strong></td><td class="editable" contenteditable="true" data-placeholder="Écris la question exactement..."></td></tr>
+              <tr><td><strong>Question de précision que tu as posée</strong></td><td class="editable" contenteditable="true" data-placeholder="Écris la question exactement..."></td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title auto">🔴 Autoévaluation</div>
+          <table class="autoeval-table">
+            <thead><tr><th>Critère</th><th class="check-col">✅ Oui</th><th class="check-col">⚠️ Part.</th><th class="check-col">❌ Non</th></tr></thead>
+            <tbody>
+              <tr><td>J'ai accueilli Théo avec une formule adaptée (ni trop formelle, ni trop familière)</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>J'ai posé au moins une question ouverte</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>J'ai posé 2 questions de précision (taille, budget, style…)</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>J'ai reformulé le besoin de Théo avant de proposer</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>J'ai orienté le client vers un article précis du magasin</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>J'ai complété la fiche découverte client (annexe A1)</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+            </tbody>
+          </table>
+          <div class="eval-legend"><span><span class="dot oui"></span>Oui</span><span><span class="dot part"></span>Partiellement</span><span><span class="dot non"></span>Non</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- M1.2 -->
+    <div class="mission p1">
+      <div class="mission-header" onclick="toggleMission(this)">
+        <span class="mission-num">M2</span>
+        <div>
+          <h3>Convaincs-moi ! – L'argumentaire CAP</h3>
+          <div class="sub">Méthode CAP · Objection prix · Conclusion de vente</div>
+        </div>
+        <span class="mission-tag">Argumentation</span>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="mission-body">
+
+        <div class="mission-block">
+          <div class="block-title contexte">🟡 Contexte</div>
+          <div class="context-box">
+            <p>Théo a essayé la veste bomber kaki (10€) dans la cabine d'essayage. Elle lui va bien mais il hésite. Mme Léger te glisse :</p>
+            <div class="bubble">"Il hésite sur le prix. C'est le moment d'argumenter avec la méthode CAP. Montre-lui la valeur du produit avant qu'il reparte les mains vides !"</div>
+            <p style="margin-top:10px;">Théo sort de la cabine et dit : <em>"Elle est sympa mais... 10€ c'est quand même un peu cher pour une veste d'occase non ?"</em></p>
+          </div>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title taches">🔵 Tes tâches</div>
+          <ol class="taches-list">
+            <li><strong>Tâche 1 :</strong> Complète l'annexe B1 : construis un argumentaire CAP pour la veste bomber kaki.</li>
+            <li><strong>Tâche 2 :</strong> Réponds à l'objection "c'est cher" de Théo avec 2 arguments différents (sans baisser le prix).</li>
+            <div class="tache-response editable" contenteditable="true" data-placeholder="✏️ Ma réponse à cette tâche..."></div>
+            <li><strong>Tâche 3 :</strong> Joue la scène avec un(e) camarade : l'un joue Théo hésitant, l'autre le/la vendeur/se.</li>
+            <div class="tache-response editable" contenteditable="true" data-placeholder="✏️ Notes sur le jeu de rôle : ce qui a bien marché, ce que j'améliorerais..."></div>
+            <li><strong>Tâche 4 :</strong> Conclus la vente avec une formule adaptée (positive, sans forcer).</li>
+            <div class="tache-response editable" contenteditable="true" data-placeholder="✏️ Ma formule de conclusion..."></div>
+          </ol>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title ressources">🟢 Ressources</div>
+          <div class="ressource-item">
+            <div class="res-title">📋 Ressource 3 – La méthode CAP</div>
+            <ul>
+              <li><strong>C – Caractéristique :</strong> une donnée objective du produit (matière, taille, marque, prix…)</li>
+              <li><strong>A – Avantage :</strong> ce que cette caractéristique apporte concrètement au client</li>
+              <li><strong>P – Preuve :</strong> ce qui prouve ce que tu avances (label, photo, témoignage, essai…)</li>
+              <li>Ex : "Cette veste est en nylon imperméable [C] → tu restes au sec sous la pluie [A] → et tu peux le vérifier toi-même en frottant la matière [P]"</li>
+            </ul>
+          </div>
+          <div class="ressource-item" style="margin-top:10px;">
+            <div class="res-title">💬 Ressource 4 – Répondre à l'objection prix</div>
+            <ul>
+              <li>Ne jamais baisser le prix immédiatement → défendre la valeur</li>
+              <li>Comparer : "Pour ce prix en magasin classique, tu aurais un t-shirt."</li>
+              <li>Relativiser : "C'est l'équivalent de 2 cafés – et tu la portes des années."</li>
+              <li>Valoriser : "Le fait main, les marques vintage, ça a de la valeur."</li>
+              <li>Reformuler positivement : "C'est un super rapport qualité/prix pour une veste de cette qualité."</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title annexe">🟣 Annexe B1 – Argumentaire CAP</div>
+          <div class="annexe-box">
+            <div class="ann-title">Annexe B1 – Argumentaire CAP : Veste bomber kaki (10€)</div>
+            <table class="annexe-table">
+              <tr><th>Caractéristique</th><th>Avantage pour Théo</th><th>Preuve</th></tr>
+              <tr><td class="editable" contenteditable="true" data-placeholder="Ex : matière imperméable..."></td><td class="editable" contenteditable="true" data-placeholder="Ex : reste au sec..."></td><td class="editable" contenteditable="true" data-placeholder="Ex : essaie en frottant..."></td></tr>
+              <tr><td class="editable" contenteditable="true" data-placeholder="Ex : style bomber tendance..."></td><td class="editable" contenteditable="true" data-placeholder="Ex : look streetwear..."></td><td class="editable" contenteditable="true" data-placeholder="Ex : Instagram, tendance actuelle..."></td></tr>
+              <tr><td class="editable" contenteditable="true" data-placeholder="Ex : prix 10€..."></td><td class="editable" contenteditable="true" data-placeholder="Ex : économies..."></td><td class="editable" contenteditable="true" data-placeholder="Ex : comparer avec un magasin neuf..."></td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title auto">🔴 Autoévaluation</div>
+          <table class="autoeval-table">
+            <thead><tr><th>Critère</th><th class="check-col">✅ Oui</th><th class="check-col">⚠️ Part.</th><th class="check-col">❌ Non</th></tr></thead>
+            <tbody>
+              <tr><td>J'ai construit un argumentaire CAP complet (3 lignes minimum)</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>J'ai répondu à l'objection prix sans baisser le prix</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>J'ai donné 2 arguments différents contre l'objection</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>Ma formule de conclusion est positive et non agressive</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>J'ai joué la scène avec un(e) camarade</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+            </tbody>
+          </table>
+          <div class="eval-legend"><span><span class="dot oui"></span>Oui</span><span><span class="dot part"></span>Partiellement</span><span><span class="dot non"></span>Non</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- M1.3 -->
+    <div class="mission p1">
+      <div class="mission-header" onclick="toggleMission(this)">
+        <span class="mission-num">M3</span>
+        <div>
+          <h3>Et avec ça ? – La vente additionnelle</h3>
+          <div class="sub">Vente complémentaire · Panier moyen · Formule non-intrusive</div>
+        </div>
+        <span class="mission-tag">Vente additionnelle</span>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="mission-body">
+
+        <div class="mission-block">
+          <div class="block-title contexte">🟡 Contexte</div>
+          <div class="context-box">
+            <p>Théo a décidé d'acheter la veste bomber kaki à 10€. Il se dirige vers la caisse. Mme Léger te murmure :</p>
+            <div class="bubble">"C'est le bon moment pour proposer un article complémentaire ! Ne force pas, mais n'hésite pas. Un bon vendeur augmente toujours son panier moyen."</div>
+            <p style="margin-top:10px;">Tu as 30 secondes avant qu'il arrive en caisse. Tu vois qu'il porte un jogging sombre et des baskets simples.</p>
+          </div>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title taches">🔵 Tes tâches</div>
+          <ol class="taches-list">
+            <li><strong>Tâche 1 :</strong> Propose à Théo 2 articles complémentaires à la veste en utilisant une formule non-intrusive.</li>
+            <div class="tache-response editable" contenteditable="true" data-placeholder="✏️ Ma formule + les 2 articles proposés..."></div>
+            <li><strong>Tâche 2 :</strong> Justifie chaque article complémentaire avec 1 argument lié à sa tenue ou son style.</li>
+            <div class="tache-response editable" contenteditable="true" data-placeholder="✏️ Argument article 1 : ... / Argument article 2 : ..."></div>
+            <li><strong>Tâche 3 :</strong> Complète l'annexe C1 : le bon de panier fictif.</li>
+            <li><strong>Tâche 4 :</strong> Calcule le total du panier et la progression par rapport à l'achat seul de la veste.</li>
+            <div class="tache-response editable" contenteditable="true" data-placeholder="✏️ Calcul : veste (10€) + article 1 (...€) + article 2 (...€) = total ...€ / Progression : + ...€"></div>
+          </ol>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title ressources">🟢 Ressources</div>
+          <div class="ressource-item">
+            <div class="res-title">💬 Ressource 5 – Formules de vente additionnelle</div>
+            <ul>
+              <li>"J'ai aussi un t-shirt qui irait parfaitement avec cette veste – tu veux voir ?"</li>
+              <li>"On a des casquettes Adidas qui s'accordent super bien avec ce style."</li>
+              <li>"Tu cherches des baskets ? On a des Adidas à 15€ qui compléteraient bien ta tenue."</li>
+              <li>⚠️ Ne jamais dire : "Vous voulez autre chose ?" → trop vague, pas efficace</li>
+              <li>✅ Toujours nommer un article précis et expliquer pourquoi il va avec</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title annexe">🟣 Annexe C1 – Bon de panier fictif</div>
+          <div class="annexe-box">
+            <div class="ann-title">Annexe C1 – Récapitulatif du panier de Théo</div>
+            <table class="annexe-table">
+              <tr><th>Article</th><th>Marque / Description</th><th>Prix (€)</th></tr>
+              <tr><td>Article principal</td><td>Veste bomber kaki</td><td>10,00 €</td></tr>
+              <tr><td>Article complémentaire 1</td><td class="editable" contenteditable="true" data-placeholder="Nom de l'article..."></td><td class="editable" contenteditable="true" data-placeholder="...€"></td></tr>
+              <tr><td>Article complémentaire 2</td><td class="editable" contenteditable="true" data-placeholder="Nom de l'article..."></td><td class="editable" contenteditable="true" data-placeholder="...€"></td></tr>
+              <tr><td colspan="2"><strong>TOTAL PANIER</strong></td><td class="editable" contenteditable="true" data-placeholder="...€"></td></tr>
+              <tr><td colspan="2"><strong>Progression vs achat seul</strong></td><td class="editable" contenteditable="true" data-placeholder="+ ...€"></td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title auto">🔴 Autoévaluation</div>
+          <table class="autoeval-table">
+            <thead><tr><th>Critère</th><th class="check-col">✅ Oui</th><th class="check-col">⚠️ Part.</th><th class="check-col">❌ Non</th></tr></thead>
+            <tbody>
+              <tr><td>J'ai proposé 2 articles complémentaires adaptés au style de Théo</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>Ma formule de proposition était non-intrusive (je n'ai pas forcé)</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>J'ai justifié chaque article avec 1 argument</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>J'ai complété le bon de panier correctement (annexe C1)</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>J'ai calculé correctement le total et la progression du panier</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+            </tbody>
+          </table>
+          <div class="eval-legend"><span><span class="dot oui"></span>Oui</span><span><span class="dot part"></span>Partiellement</span><span><span class="dot non"></span>Non</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PÔLE 2 ===== -->
+  <div class="section" id="pole2">
+    <div class="pole-header p2">
+      <div class="pole-number">02</div>
+      <div>
+        <h2>Pôle 2 – Encaissement & Gestion caisse</h2>
+        <p>Compétences travaillées : réaliser un encaissement simple, appliquer une promotion, rendre la monnaie, gérer une erreur de caisse avec calme et professionnalisme.</p>
+      </div>
+    </div>
+
+    <!-- M2.1 -->
+    <div class="mission p2">
+      <div class="mission-header" onclick="toggleMission(this)">
+        <span class="mission-num">M1</span>
+        <div>
+          <h3>On passe en caisse ! – L'encaissement simple</h3>
+          <div class="sub">Procédure d'encaissement · Monnaie · Formules caisse</div>
+        </div>
+        <span class="mission-tag">Caisse</span>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="mission-body">
+
+        <div class="mission-block">
+          <div class="block-title contexte">🟡 Contexte</div>
+          <div class="context-box">
+            <p>C'est ta première journée seul(e) en caisse. Mme Léger t'a expliqué la procédure et te regarde de loin. Une cliente, <strong>Mme Aubert</strong>, arrive avec 3 articles :</p>
+            <ul style="margin:10px 0 0 20px; font-size:0.88rem; line-height:1.8;">
+              <li>1 jogging Adidas → <strong>8€</strong></li>
+              <li>1 polo Adidas jaune → <strong>5€</strong></li>
+              <li>1 paire de baskets Adidas Campus → <strong>15€</strong></li>
+            </ul>
+            <p style="margin-top:10px;">Elle tend un billet de <strong>50€</strong>.</p>
+          </div>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title taches">🔵 Tes tâches</div>
+          <ol class="taches-list">
+            <li><strong>Tâche 1 :</strong> Accueille Mme Aubert en caisse avec la formule adaptée.</li>
+            <div class="tache-response editable" contenteditable="true" data-placeholder="✏️ Ma formule d'accueil en caisse..."></div>
+            <li><strong>Tâche 2 :</strong> Annonce le total à la cliente avant qu'elle paie.</li>
+            <div class="tache-response editable" contenteditable="true" data-placeholder="✏️ Ma formule + le montant total..."></div>
+            <li><strong>Tâche 3 :</strong> Complète l'annexe D1 : le ticket de caisse fictif (calcule le total et la monnaie à rendre).</li>
+            <li><strong>Tâche 4 :</strong> Rends la monnaie à la cliente avec la bonne formule et en comptant à voix haute.</li>
+            <div class="tache-response editable" contenteditable="true" data-placeholder="✏️ Calcul monnaie + formule utilisée..."></div>
+            <li><strong>Tâche 5 :</strong> Conclus l'encaissement avec une formule de congé professionnelle.</li>
+            <div class="tache-response editable" contenteditable="true" data-placeholder="✏️ Ma formule de congé..."></div>
+          </ol>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title ressources">🟢 Ressources</div>
+          <div class="ressource-item">
+            <div class="res-title">🧾 Ressource 6 – Procédure d'encaissement en 6 étapes</div>
+            <ul>
+              <li>1. Accueillir le client en caisse ("Bonjour Madame !")</li>
+              <li>2. Scanner / enregistrer les articles un par un</li>
+              <li>3. Annoncer le total clairement ("Ça vous fait XX€ s'il vous plaît")</li>
+              <li>4. Encaisser le paiement (espèces, CB) et vérifier le billet si espèces</li>
+              <li>5. Rendre la monnaie en comptant à voix haute ("Je vous rends XX€")</li>
+              <li>6. Remettre le ticket et prendre congé ("Bonne journée Madame, à bientôt !")</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title annexe">🟣 Annexe D1 – Ticket de caisse fictif</div>
+          <div class="annexe-box">
+            <div class="ann-title">Annexe D1 – Complète le ticket de caisse de Mme Aubert</div>
+            <table class="annexe-table">
+              <tr><th>Article</th><th>Prix unitaire</th><th>Total ligne</th></tr>
+              <tr><td>Jogging Adidas</td><td>8,00 €</td><td>8,00 €</td></tr>
+              <tr><td>Polo Adidas jaune</td><td>5,00 €</td><td>5,00 €</td></tr>
+              <tr><td>Baskets Adidas Campus</td><td>15,00 €</td><td>15,00 €</td></tr>
+              <tr><td colspan="2"><strong>TOTAL</strong></td><td class="editable" contenteditable="true" data-placeholder="...€"></td></tr>
+              <tr><td colspan="2"><strong>Espèces reçues</strong></td><td>50,00 €</td></tr>
+              <tr><td colspan="2"><strong>Monnaie à rendre</strong></td><td class="editable" contenteditable="true" data-placeholder="...€"></td></tr>
+              <tr><td colspan="2"><strong>Décomposition de la monnaie</strong><br><span style="font-size:0.8rem;color:#777">(billets + pièces)</span></td><td class="editable" contenteditable="true" data-placeholder="Ex : 1x20€ + 1x2€ + ..."></td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title auto">🔴 Autoévaluation</div>
+          <table class="autoeval-table">
+            <thead><tr><th>Critère</th><th class="check-col">✅ Oui</th><th class="check-col">⚠️ Part.</th><th class="check-col">❌ Non</th></tr></thead>
+            <tbody>
+              <tr><td>J'ai accueilli Mme Aubert avec une formule adaptée en caisse</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>J'ai calculé correctement le total</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>J'ai calculé correctement la monnaie à rendre</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>J'ai compté la monnaie à voix haute</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>J'ai remis le ticket et pris congé avec une formule professionnelle</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+            </tbody>
+          </table>
+          <div class="eval-legend"><span><span class="dot oui"></span>Oui</span><span><span class="dot part"></span>Partiellement</span><span><span class="dot non"></span>Non</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- M2.2 -->
+    <div class="mission p2">
+      <div class="mission-header" onclick="toggleMission(this)">
+        <span class="mission-num">M2</span>
+        <div>
+          <h3>Les soldes, c'est maintenant ! – Appliquer une promotion</h3>
+          <div class="sub">Calcul de réduction · Promotions en cours · Communication client</div>
+        </div>
+        <span class="mission-tag">Promotions</span>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="mission-body">
+
+        <div class="mission-block">
+          <div class="block-title contexte">🟡 Contexte</div>
+          <div class="context-box">
+            <p>Un client, <strong>M. Romain</strong>, arrive en caisse avec 2 jeans (8€ et 10€) et un t-shirt (5€). Il a vu le panneau <em>"-50% sur le 2ème jean"</em> accroché dans le magasin et demande :</p>
+            <div class="bubble">"La promo sur le 2ème jean, elle s'applique comment ? C'est lequel des deux qui est à -50% ?"</div>
+            <p style="margin-top:10px;">Mme Léger te dit discrètement : <em>"La promo s'applique toujours sur l'article le moins cher des deux."</em></p>
+          </div>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title taches">🔵 Tes tâches</div>
+          <ol class="taches-list">
+            <li><strong>Tâche 1 :</strong> Explique clairement à M. Romain comment fonctionne la promotion -50% sur le 2ème jean.</li>
+            <div class="tache-response editable" contenteditable="true" data-placeholder="✏️ Mon explication..."></div>
+            <li><strong>Tâche 2 :</strong> Complète l'annexe D2 : calcule le nouveau total avec la promotion appliquée.</li>
+            <li><strong>Tâche 3 :</strong> Annonce le total réduit au client avec une formule valorisant la bonne affaire.</li>
+            <div class="tache-response editable" contenteditable="true" data-placeholder="✏️ Ma formule + le montant total avec promo..."></div>
+            <li><strong>Tâche 4 (bonus) :</strong> M. Romain a un billet de 20€. Calcule la monnaie à rendre et décompose-la en billets et pièces.</li>
+            <div class="tache-response editable" contenteditable="true" data-placeholder="✏️ Calcul + décomposition de la monnaie..."></div>
+          </ol>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title annexe">🟣 Annexe D2 – Calcul avec promotion</div>
+          <div class="annexe-box">
+            <div class="ann-title">Annexe D2 – Ticket de caisse avec promo -50% sur le 2ème jean</div>
+            <table class="annexe-table">
+              <tr><th>Article</th><th>Prix initial</th><th>Réduction</th><th>Prix final</th></tr>
+              <tr><td>Jean 1 (le plus cher)</td><td>10,00 €</td><td>—</td><td>10,00 €</td></tr>
+              <tr><td>Jean 2 (le moins cher)</td><td>8,00 €</td><td class="editable" contenteditable="true" data-placeholder="-...€"></td><td class="editable" contenteditable="true" data-placeholder="...€"></td></tr>
+              <tr><td>T-shirt</td><td>5,00 €</td><td>—</td><td>5,00 €</td></tr>
+              <tr><td colspan="3"><strong>TOTAL avec promotion</strong></td><td class="editable" contenteditable="true" data-placeholder="...€"></td></tr>
+              <tr><td colspan="3"><strong>Économie réalisée par le client</strong></td><td class="editable" contenteditable="true" data-placeholder="...€"></td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title auto">🔴 Autoévaluation</div>
+          <table class="autoeval-table">
+            <thead><tr><th>Critère</th><th class="check-col">✅ Oui</th><th class="check-col">⚠️ Part.</th><th class="check-col">❌ Non</th></tr></thead>
+            <tbody>
+              <tr><td>J'ai expliqué clairement la promotion à M. Romain</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>J'ai bien appliqué -50% sur le jean le moins cher</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>Le total avec promotion est correct</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>J'ai valorisé la bonne affaire dans ma formule</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+            </tbody>
+          </table>
+          <div class="eval-legend"><span><span class="dot oui"></span>Oui</span><span><span class="dot part"></span>Partiellement</span><span><span class="dot non"></span>Non</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- M2.3 -->
+    <div class="mission p2">
+      <div class="mission-header" onclick="toggleMission(this)">
+        <span class="mission-num">M3</span>
+        <div>
+          <h3>Oups ! – Gérer une erreur de caisse</h3>
+          <div class="sub">Erreur d'encaissement · Calme & professionnalisme · Procédure correction</div>
+        </div>
+        <span class="mission-tag">Gestion erreur</span>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="mission-body">
+
+        <div class="mission-block">
+          <div class="block-title contexte">🟡 Contexte</div>
+          <div class="context-box">
+            <p>Tu viens d'encaisser <strong>Mme Petit</strong> pour un jogging à 12€. Elle a payé en espèces avec un billet de 20€. Tu lui as rendu 7€ de monnaie au lieu de 8€. Elle s'en rend compte à la sortie et revient :</p>
+            <div class="bubble">"Excusez-moi, je pense qu'il y a une erreur sur ma monnaie. Vous m'avez rendu 7€ mais il m'en faut 8€ normalement ?"</div>
+            <p style="margin-top:10px;">Tu réalises que tu as fait une erreur. Mme Léger est dans l'arrière-boutique.</p>
+          </div>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title taches">🔵 Tes tâches</div>
+          <ol class="taches-list">
+            <li><strong>Tâche 1 :</strong> Vérifie mentalement si Mme Petit a raison (calcule : 20€ - 12€ = ?).</li>
+            <div class="tache-response editable" contenteditable="true" data-placeholder="✏️ Mon calcul + conclusion (a-t-elle raison ?)..."></div>
+            <li><strong>Tâche 2 :</strong> Réagis de façon professionnelle : reconnais l'erreur calmement sans te dévaloriser.</li>
+            <div class="tache-response editable" contenteditable="true" data-placeholder="✏️ Ce que je dis à Mme Petit..."></div>
+            <li><strong>Tâche 3 :</strong> Régularise immédiatement en lui rendant la pièce manquante avec une formule d'excuse.</li>
+            <div class="tache-response editable" contenteditable="true" data-placeholder="✏️ Ma formule d'excuse + geste..."></div>
+            <li><strong>Tâche 4 :</strong> Complète l'annexe D3 : la fiche d'erreur caisse (pour informer Mme Léger).</li>
+            <li><strong>Tâche 5 :</strong> Que fais-tu pour éviter que cela se reproduise ? Cite 2 bonnes pratiques.</li>
+            <div class="tache-response editable" contenteditable="true" data-placeholder="✏️ Bonne pratique 1 : ... / Bonne pratique 2 : ..."></div>
+          </ol>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title ressources">🟢 Ressources</div>
+          <div class="ressource-item">
+            <div class="res-title">💡 Ressource 7 – Bonnes pratiques en caisse pour éviter les erreurs</div>
+            <ul>
+              <li>Toujours annoncer à voix haute le montant du billet reçu : "Je reçois un billet de 20€"</li>
+              <li>Poser le billet visible sur le bord de la caisse avant de rendre la monnaie</li>
+              <li>Compter la monnaie à voix haute pièce par pièce</li>
+              <li>Ne jamais ranger le billet du client avant qu'il ait vérifié sa monnaie</li>
+              <li>En cas de doute : redemander à Mme Léger ou vérifier sur la calculatrice</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title annexe">🟣 Annexe D3 – Fiche d'erreur caisse</div>
+          <div class="annexe-box">
+            <div class="ann-title">Annexe D3 – À remettre à Mme Léger</div>
+            <table class="annexe-table">
+              <tr><td style="width:40%"><strong>Date et heure</strong></td><td class="editable" contenteditable="true" data-placeholder="..."></td></tr>
+              <tr><td><strong>Nom de la cliente</strong></td><td>Mme Petit</td></tr>
+              <tr><td><strong>Article vendu</strong></td><td>Jogging – 12€</td></tr>
+              <tr><td><strong>Montant encaissé</strong></td><td>20€ (billet)</td></tr>
+              <tr><td><strong>Monnaie due</strong></td><td class="editable" contenteditable="true" data-placeholder="...€"></td></tr>
+              <tr><td><strong>Monnaie rendue (erreur)</strong></td><td>7€</td></tr>
+              <tr><td><strong>Écart</strong></td><td class="editable" contenteditable="true" data-placeholder="...€ de trop peu rendu"></td></tr>
+              <tr><td><strong>Régularisation effectuée</strong></td><td class="editable" contenteditable="true" data-placeholder="Décris ce que tu as fait..."></td></tr>
+              <tr><td><strong>Signature</strong></td><td class="editable" contenteditable="true" data-placeholder="Ton prénom..."></td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title auto">🔴 Autoévaluation</div>
+          <table class="autoeval-table">
+            <thead><tr><th>Critère</th><th class="check-col">✅ Oui</th><th class="check-col">⚠️ Part.</th><th class="check-col">❌ Non</th></tr></thead>
+            <tbody>
+              <tr><td>J'ai vérifié mentalement que Mme Petit avait raison</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>J'ai reconnu l'erreur calmement sans me dévaloriser</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>J'ai régularisé immédiatement avec une formule d'excuse</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>J'ai complété la fiche d'erreur caisse (annexe D3)</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>J'ai cité 2 bonnes pratiques pour éviter que cela se reproduise</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+            </tbody>
+          </table>
+          <div class="eval-legend"><span><span class="dot oui"></span>Oui</span><span><span class="dot part"></span>Partiellement</span><span><span class="dot non"></span>Non</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PÔLE 3 ===== -->
+  <div class="section" id="pole3">
+    <div class="pole-header p3">
+      <div class="pole-number">03</div>
+      <div>
+        <h2>Pôle 3 – Réclamations & Gestion des retours</h2>
+        <p>Compétences travaillées : accueillir une réclamation avec empathie, appliquer la méthode ECCA, gérer un retour avec ou sans ticket, transformer une situation négative en expérience positive.</p>
+      </div>
+    </div>
+
+    <!-- M3.1 -->
+    <div class="mission p3">
+      <div class="mission-header" onclick="toggleMission(this)">
+        <span class="mission-num">M1</span>
+        <div>
+          <h3>Je voudrais rendre ça – Le retour avec ticket</h3>
+          <div class="sub">Procédure retour · Remboursement ou échange · Fiche retour</div>
+        </div>
+        <span class="mission-tag">Retour</span>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="mission-body">
+
+        <div class="mission-block">
+          <div class="block-title contexte">🟡 Contexte</div>
+          <div class="context-box">
+            <p><strong>Lucie, 16 ans</strong>, revient au Shop ta Sapp' 3 jours après son achat. Elle pose sur le comptoir un t-shirt Adidas rose (6€), encore dans son sachet, avec son ticket de caisse :</p>
+            <div class="bubble">"Bonjour, j'ai acheté ce t-shirt l'autre jour mais il est trop grand. Ma mère dit que je peux l'échanger ? J'ai le ticket."</div>
+            <p style="margin-top:10px;">Mme Léger te rappelle discrètement : <em>"Dans notre magasin, on accepte les échanges sous 7 jours avec ticket, article non porté et étiquette encore attachée."</em></p>
+          </div>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title taches">🔵 Tes tâches</div>
+          <ol class="taches-list">
+            <li><strong>Tâche 1 :</strong> Vérifie les 3 conditions du retour (délai, état, ticket) et dis ce que tu constates pour chaque condition.</li>
+            <div class="tache-response editable" contenteditable="true" data-placeholder="✏️ Condition 1 (délai) : ... / Condition 2 (état) : ... / Condition 3 (ticket) : ..."></div>
+            <li><strong>Tâche 2 :</strong> Annonce à Lucie que son retour est accepté avec une formule rassurante.</li>
+            <div class="tache-response editable" contenteditable="true" data-placeholder="✏️ Ma formule..."></div>
+            <li><strong>Tâche 3 :</strong> Propose-lui 2 options : l'échange contre la même taille ou un article différent du même rayon.</li>
+            <div class="tache-response editable" contenteditable="true" data-placeholder="✏️ Comment je lui présente les 2 options..."></div>
+            <li><strong>Tâche 4 :</strong> Complète l'annexe E1 : la fiche de retour du magasin.</li>
+            <li><strong>Tâche 5 :</strong> Conclus l'échange avec une formule qui fidélise Lucie.</li>
+            <div class="tache-response editable" contenteditable="true" data-placeholder="✏️ Ma formule de conclusion..."></div>
+          </ol>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title ressources">🟢 Ressources</div>
+          <div class="ressource-item">
+            <div class="res-title">🔄 Ressource 8 – Politique de retour du Shop ta Sapp'</div>
+            <ul>
+              <li>Délai : <strong>7 jours</strong> après l'achat maximum</li>
+              <li>Article : doit être <strong>non porté</strong>, <strong>étiquette attachée</strong>, en bon état</li>
+              <li>Justificatif : <strong>ticket de caisse obligatoire</strong> pour remboursement ou échange</li>
+              <li>Options proposées : échange (même article autre taille / autre article même valeur) ou avoir</li>
+              <li>Remboursement espèces : uniquement avec accord de Mme Léger</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title annexe">🟣 Annexe E1 – Fiche de retour</div>
+          <div class="annexe-box">
+            <div class="ann-title">Annexe E1 – Fiche de retour client à compléter</div>
+            <table class="annexe-table">
+              <tr><td style="width:40%"><strong>Date du retour</strong></td><td class="editable" contenteditable="true" data-placeholder="..."></td></tr>
+              <tr><td><strong>Nom du client</strong></td><td>Lucie</td></tr>
+              <tr><td><strong>Article retourné</strong></td><td>T-shirt Adidas rose – 6€</td></tr>
+              <tr><td><strong>Date d'achat (ticket)</strong></td><td class="editable" contenteditable="true" data-placeholder="Date sur le ticket..."></td></tr>
+              <tr><td><strong>Motif du retour</strong></td><td class="editable" contenteditable="true" data-placeholder="..."></td></tr>
+              <tr><td><strong>État de l'article</strong></td><td class="editable" contenteditable="true" data-placeholder="Non porté / étiquette attachée / ..."></td></tr>
+              <tr><td><strong>Ticket de caisse ?</strong></td><td class="editable" contenteditable="true" data-placeholder="Oui / Non"></td></tr>
+              <tr><td><strong>Retour accepté ?</strong></td><td class="editable" contenteditable="true" data-placeholder="Oui / Non – Justification..."></td></tr>
+              <tr><td><strong>Solution proposée</strong></td><td class="editable" contenteditable="true" data-placeholder="Échange taille / Autre article / Avoir..."></td></tr>
+              <tr><td><strong>Signature vendeur</strong></td><td class="editable" contenteditable="true" data-placeholder="Ton prénom..."></td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title auto">🔴 Autoévaluation</div>
+          <table class="autoeval-table">
+            <thead><tr><th>Critère</th><th class="check-col">✅ Oui</th><th class="check-col">⚠️ Part.</th><th class="check-col">❌ Non</th></tr></thead>
+            <tbody>
+              <tr><td>J'ai vérifié les 3 conditions du retour (délai, état, ticket)</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>J'ai annoncé l'acceptation du retour avec une formule rassurante</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>J'ai proposé 2 options claires à Lucie</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>J'ai complété la fiche de retour (annexe E1)</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>Ma formule finale fidélise Lucie (donne envie de revenir)</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+            </tbody>
+          </table>
+          <div class="eval-legend"><span><span class="dot oui"></span>Oui</span><span><span class="dot part"></span>Partiellement</span><span><span class="dot non"></span>Non</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- M3.2 -->
+    <div class="mission p3">
+      <div class="mission-header" onclick="toggleMission(this)">
+        <span class="mission-num">M2</span>
+        <div>
+          <h3>Je suis pas content ! – La réclamation à chaud (ECCA)</h3>
+          <div class="sub">Méthode ECCA · Empathie · Gestion des émotions client</div>
+        </div>
+        <span class="mission-tag">Réclamation</span>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="mission-body">
+
+        <div class="mission-block">
+          <div class="block-title contexte">🟡 Contexte</div>
+          <div class="context-box">
+            <p><strong>M. Karim</strong>, la trentaine, entre dans le magasin l'air visiblement agacé et dit fort dès l'entrée :</p>
+            <div class="bubble">"Bonjour ! J'ai acheté une veste ici la semaine dernière, je l'ai mise une seule fois et la fermeture éclair est déjà cassée. C'est inadmissible ! Je veux être remboursé !"</div>
+            <p style="margin-top:10px;">Il n'a pas son ticket. D'autres clients sont présents dans le magasin. Mme Léger est occupée avec quelqu'un d'autre.</p>
+          </div>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title taches">🔵 Tes tâches</div>
+          <ol class="taches-list">
+            <li><strong>Tâche 1 :</strong> Applique l'étape E de la méthode ECCA : écoute M. Karim sans l'interrompre, montre que tu l'entends.</li>
+            <div class="tache-response editable" contenteditable="true" data-placeholder="✏️ Ce que je fais et ce que je dis pendant l'écoute..."></div>
+            <li><strong>Tâche 2 :</strong> Applique l'étape C (Compatir) : montre de l'empathie sans admettre une faute.</li>
+            <div class="tache-response editable" contenteditable="true" data-placeholder="✏️ Ma formule d'empathie..."></div>
+            <li><strong>Tâche 3 :</strong> Applique l'étape C (Clarifier) : reformule la situation pour vérifier ta compréhension.</li>
+            <div class="tache-response editable" contenteditable="true" data-placeholder="✏️ Ma reformulation..."></div>
+            <li><strong>Tâche 4 :</strong> Applique l'étape A (Agir) : propose 2 solutions concrètes à M. Karim même sans ticket.</li>
+            <div class="tache-response editable" contenteditable="true" data-placeholder="✏️ Solution 1 : ... / Solution 2 : ..."></div>
+            <li><strong>Tâche 5 :</strong> Complète l'annexe E2 : la fiche réclamation.</li>
+          </ol>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title ressources">🟢 Ressources</div>
+          <div class="ressource-item">
+            <div class="res-title">🧩 Ressource 9 – Méthode ECCA</div>
+            <ul>
+              <li><strong>E – Écouter :</strong> laisser le client s'exprimer entièrement sans l'interrompre. Hocher la tête, contact visuel, ne pas croiser les bras.</li>
+              <li><strong>C – Compatir :</strong> montrer de l'empathie sans reconnaître une faute. Ex : "Je comprends votre mécontentement et je suis sincèrement désolé(e) pour cette situation."</li>
+              <li><strong>C – Clarifier :</strong> reformuler les faits pour s'assurer d'avoir bien compris. Ex : "Si je comprends bien, vous avez acheté la veste la semaine dernière et la fermeture a cédé dès le premier usage ?"</li>
+              <li><strong>A – Agir :</strong> proposer une solution concrète et immédiate. Ex : réparer, échanger, geste commercial, faire appel à Mme Léger.</li>
+            </ul>
+          </div>
+          <div class="ressource-item" style="margin-top:10px;">
+            <div class="res-title">💡 Ressource 10 – Solutions possibles sans ticket</div>
+            <ul>
+              <li>Examiner la veste et constater le défaut</li>
+              <li>Proposer un échange contre une veste équivalente avec accord de Mme Léger</li>
+              <li>Proposer une réparation si possible (fermeture éclair)</li>
+              <li>Proposer un geste commercial (article offert, réduction)</li>
+              <li>Si blocage : appeler Mme Léger pour arbitrage</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title annexe">🟣 Annexe E2 – Fiche réclamation</div>
+          <div class="annexe-box">
+            <div class="ann-title">Annexe E2 – Fiche de réclamation client</div>
+            <table class="annexe-table">
+              <tr><td style="width:40%"><strong>Date et heure</strong></td><td class="editable" contenteditable="true" data-placeholder="..."></td></tr>
+              <tr><td><strong>Nom du client</strong></td><td>M. Karim</td></tr>
+              <tr><td><strong>Nature de la réclamation</strong></td><td class="editable" contenteditable="true" data-placeholder="Décris le problème en 1-2 phrases..."></td></tr>
+              <tr><td><strong>Article concerné</strong></td><td class="editable" contenteditable="true" data-placeholder="Veste... prix... date achat supposé..."></td></tr>
+              <tr><td><strong>Ticket de caisse ?</strong></td><td>Non</td></tr>
+              <tr><td><strong>Étape E – Écoute : ce que le client a dit</strong></td><td class="editable" contenteditable="true" data-placeholder="Résumé en 1-2 phrases..."></td></tr>
+              <tr><td><strong>Étape C – Compatir : formule utilisée</strong></td><td class="editable" contenteditable="true" data-placeholder="Ta formule exacte..."></td></tr>
+              <tr><td><strong>Étape C – Clarifier : reformulation</strong></td><td class="editable" contenteditable="true" data-placeholder="Ta reformulation..."></td></tr>
+              <tr><td><strong>Étape A – Solutions proposées</strong></td><td class="editable" contenteditable="true" data-placeholder="Solution 1 : ... / Solution 2 : ..."></td></tr>
+              <tr><td><strong>Escalade à Mme Léger ?</strong></td><td class="editable" contenteditable="true" data-placeholder="Oui / Non – Pourquoi ?"></td></tr>
+              <tr><td><strong>Résultat final</strong></td><td class="editable" contenteditable="true" data-placeholder="Comment s'est terminée la situation..."></td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title auto">🔴 Autoévaluation</div>
+          <table class="autoeval-table">
+            <thead><tr><th>Critère</th><th class="check-col">✅ Oui</th><th class="check-col">⚠️ Part.</th><th class="check-col">❌ Non</th></tr></thead>
+            <tbody>
+              <tr><td>J'ai laissé M. Karim parler sans l'interrompre (étape E)</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>J'ai montré de l'empathie sans reconnaître une faute (étape C)</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>J'ai reformulé correctement la situation (étape C)</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>J'ai proposé 2 solutions concrètes adaptées à la situation (étape A)</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>J'ai gardé mon calme malgré l'agressivité du client</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>J'ai complété la fiche réclamation (annexe E2)</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+            </tbody>
+          </table>
+          <div class="eval-legend"><span><span class="dot oui"></span>Oui</span><span><span class="dot part"></span>Partiellement</span><span><span class="dot non"></span>Non</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- M3.3 -->
+    <div class="mission p3">
+      <div class="mission-header" onclick="toggleMission(this)">
+        <span class="mission-num">M3</span>
+        <div>
+          <h3>C'est pas ce que j'attendais – Le client déçu par le produit</h3>
+          <div class="sub">Déception produit · Écoute · Retournement positif</div>
+        </div>
+        <span class="mission-tag">Insatisfaction</span>
+        <span class="toggle-icon">▼</span>
+      </div>
+      <div class="mission-body">
+
+        <div class="mission-block">
+          <div class="block-title contexte">🟡 Contexte</div>
+          <div class="context-box">
+            <p><strong>Mme Saïd</strong> revient avec un jogging Adidas acheté hier (12€, ticket présent). Elle l'a lavé une fois et la couleur a légèrement déteint. Elle est déçue mais pas agressive :</p>
+            <div class="bubble">"Bonjour, j'ai lavé ce jogging hier soir comme indiqué sur l'étiquette, et il a déteint. Je ne veux pas faire de scandale, mais je suis vraiment déçue. Je ne sais pas quoi faire..."</div>
+            <p style="margin-top:10px;">L'article a été porté et lavé. Il ne peut techniquement pas être revendu. Mais le ticket est là, et le délai de 7 jours n'est pas dépassé.</p>
+          </div>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title taches">🔵 Tes tâches</div>
+          <ol class="taches-list">
+            <li><strong>Tâche 1 :</strong> Accueille la déception de Mme Saïd avec empathie (sans promettre de solution immédiatement).</li>
+            <div class="tache-response editable" contenteditable="true" data-placeholder="✏️ Ma formule d'accueil empathique..."></div>
+            <li><strong>Tâche 2 :</strong> Examine l'article et le ticket. Identifie la difficulté : article porté ET lavé = ne peut pas être revendu. Comment l'expliquer sans braquer Mme Saïd ?</li>
+            <div class="tache-response editable" contenteditable="true" data-placeholder="✏️ Mon explication..."></div>
+            <li><strong>Tâche 3 :</strong> Propose 2 solutions possibles malgré la complexité de la situation.</li>
+            <div class="tache-response editable" contenteditable="true" data-placeholder="✏️ Solution 1 : ... / Solution 2 : ..."></div>
+            <li><strong>Tâche 4 :</strong> Décide si tu dois appeler Mme Léger. Justifie ta décision.</li>
+            <div class="tache-response editable" contenteditable="true" data-placeholder="✏️ Oui / Non – Pourquoi ?..."></div>
+            <li><strong>Tâche 5 :</strong> Complète l'annexe E3 : rédige un petit mot de suivi que tu laisses à Mme Léger pour l'informer de la situation.</li>
+          </ol>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title ressources">🟢 Ressources</div>
+          <div class="ressource-item">
+            <div class="res-title">💡 Ressource 11 – Gérer une situation complexe sans réponse simple</div>
+            <ul>
+              <li>Ne jamais promettre ce qu'on ne peut pas tenir</li>
+              <li>Reconnaître la déception sans nécessairement reconnaître une faute du magasin</li>
+              <li>Chercher une solution créative : avoir partiel, geste commercial, réduction sur prochain achat</li>
+              <li>Si la situation dépasse tes compétences → escalader à Mme Léger calmement et sans te dévaloriser</li>
+              <li>Toujours remercier le client d'être revenu plutôt que de partir mécontent sans rien dire</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title annexe">🟣 Annexe E3 – Mot de suivi pour Mme Léger</div>
+          <div class="annexe-box">
+            <div class="ann-title">Annexe E3 – Rédige un mot de suivi à laisser à Mme Léger</div>
+            <table class="annexe-table">
+              <tr><td style="width:35%"><strong>Date</strong></td><td class="editable" contenteditable="true" data-placeholder="..."></td></tr>
+              <tr><td><strong>Objet</strong></td><td class="editable" contenteditable="true" data-placeholder="Situation client à traiter..."></td></tr>
+              <tr><td><strong>Client concerné</strong></td><td>Mme Saïd</td></tr>
+              <tr><td><strong>Résumé de la situation</strong></td><td class="editable" contenteditable="true" data-placeholder="En 2-3 phrases : ce qu'elle a acheté, le problème, ce qu'elle demande..."></td></tr>
+              <tr><td><strong>Ce que j'ai fait / dit</strong></td><td class="editable" contenteditable="true" data-placeholder="Les solutions que tu as proposées..."></td></tr>
+              <tr><td><strong>Ce qui reste à décider</strong></td><td class="editable" contenteditable="true" data-placeholder="Ce que Mme Léger doit arbitrer..."></td></tr>
+              <tr><td><strong>Coordonnées de Mme Saïd</strong></td><td class="editable" contenteditable="true" data-placeholder="(à demander si possible) Téléphone ou email..."></td></tr>
+              <tr><td><strong>Signature</strong></td><td class="editable" contenteditable="true" data-placeholder="Ton prénom..."></td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="mission-block">
+          <div class="block-title auto">🔴 Autoévaluation</div>
+          <table class="autoeval-table">
+            <thead><tr><th>Critère</th><th class="check-col">✅ Oui</th><th class="check-col">⚠️ Part.</th><th class="check-col">❌ Non</th></tr></thead>
+            <tbody>
+              <tr><td>J'ai accueilli la déception de Mme Saïd avec empathie</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>J'ai expliqué la difficulté (article porté/lavé) sans braquer la cliente</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>J'ai proposé 2 solutions malgré la complexité</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>J'ai justifié ma décision d'escalader ou non à Mme Léger</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+              <tr><td>J'ai rédigé le mot de suivi pour Mme Léger (annexe E3)</td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'oui')">O</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'part')">P</button></div></td><td class="check-col"><div class="check-cell"><button class="check-btn" onclick="check(this,'non')">N</button></div></td></tr>
+            </tbody>
+          </table>
+          <div class="eval-legend"><span><span class="dot oui"></span>Oui</span><span><span class="dot part"></span>Partiellement</span><span><span class="dot non"></span>Non</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- .main -->
+
+<script>
+  function showSection(id, btn) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+
+  function toggleMission(header) {
+    const mission = header.parentElement;
+    mission.classList.toggle('open');
+  }
+
+  function savePDF() {
+    var oldTitle = document.title;
+    document.title = "Scenario_ShoptaSapp_2deMRC";
+    window.print();
+    document.title = oldTitle;
+  }
+
+  function check(btn, type) {
+    const cell = btn.closest('.check-cell');
+    cell.querySelectorAll('.check-btn').forEach(b => {
+      b.classList.remove('oui','part','non');
+    });
+    btn.classList.toggle(type);
+  }
+</script>
+</body>
+</html>
